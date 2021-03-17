@@ -1,4 +1,4 @@
-package com.sundy.algorithm.leetcode.editor.cn;
+package com.shawn.algorithm.leetcode.editor.cn;
 //给定一个二叉树的根节点 root ，返回它的 中序 遍历。 
 //
 // 
@@ -53,10 +53,9 @@ package com.sundy.algorithm.leetcode.editor.cn;
 // Related Topics 栈 树 哈希表 
 // 👍 882 👎 0
 
-import com.shawn.algorithm.leetcode.editor.cn.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 二叉树的中序遍历
@@ -87,6 +86,22 @@ public class BinaryTreeInorderTraversal{
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> nodeStack = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+        while (root != null || !nodeStack.empty()) {
+            while (root != null) {
+                nodeStack.push(root);
+                root = root.left;
+            }
+            root = nodeStack.pop();
+            result.add(root.val);
+            root = root.right;
+        }
+
+        return result;
+    }
+
+    public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root != null) {
             result.addAll(inorderTraversal(root.left));
