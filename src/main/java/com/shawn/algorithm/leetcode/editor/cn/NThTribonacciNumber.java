@@ -58,6 +58,23 @@ class Solution {
         }
         return 0;
     }
+
+    public int optimalSolution(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        int a = 0, b = 1, c = 1, d;
+        while (n-- > 2) {
+            d = a + b + c;
+            a = b;
+            b = c;
+            c = d;
+        }
+        return c;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
