@@ -85,7 +85,7 @@ public class BinaryTreeInorderTraversal{
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal2(TreeNode root) {
         Stack<TreeNode> nodeStack = new Stack<>();
         List<Integer> result = new ArrayList<>();
         while (root != null || !nodeStack.empty()) {
@@ -101,7 +101,7 @@ class Solution {
         return result;
     }
 
-    public List<Integer> inorderTraversal2(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root != null) {
             result.addAll(inorderTraversal(root.left));
