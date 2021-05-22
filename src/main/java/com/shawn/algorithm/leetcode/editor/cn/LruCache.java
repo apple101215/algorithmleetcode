@@ -94,45 +94,43 @@ public class LruCache {
         }
     }
 
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache obj = new LRUCache(capacity);
- * int param_1 = obj.get(key);
- * obj.put(key,value);
- */
+    /**
+     * Your LRUCache object will be instantiated and called as such:
+     * LRUCache obj = new LRUCache(capacity);
+     * int param_1 = obj.get(key);
+     * obj.put(key,value);
+     */
 //leetcode submit region end(Prohibit modification and deletion)
-class MyLRUCache {
-    Map<Integer, Integer> container;
-    LinkedList<Integer> keysLink;
-    int capacity;
+    class MyLRUCache {
+        Map<Integer, Integer> container;
+        LinkedList<Integer> keysLink;
+        int capacity;
 
-    public MyLRUCache(int capacity) {
-        this.capacity = capacity;
-        container = new HashMap<>(capacity);
-        keysLink = new LinkedList<Integer>();
-    }
-
-    public int get(int key) {
-        Integer result = container.get(key);
-        if (result == null) {
-            return -1;
+        public MyLRUCache(int capacity) {
+            this.capacity = capacity;
+            container = new HashMap<>(capacity);
+            keysLink = new LinkedList<Integer>();
         }
-        keysLink.remove(Integer.valueOf(key));
-        keysLink.addFirst(key);
-        return result;
-    }
 
-    public void put(int key, int value) {
-        if (container.get(key) != null) {
+        public int get(int key) {
+            Integer result = container.get(key);
+            if (result == null) {
+                return -1;
+            }
             keysLink.remove(Integer.valueOf(key));
-        } else if (keysLink.size() >= capacity) {
-            container.remove(keysLink.getLast());
-            keysLink.removeLast();
+            keysLink.addFirst(key);
+            return result;
         }
-        keysLink.addFirst(key);
-        container.put(key, value);
-    }
-}
-}
 
+        public void put(int key, int value) {
+            if (container.get(key) != null) {
+                keysLink.remove(Integer.valueOf(key));
+            } else if (keysLink.size() >= capacity) {
+                container.remove(keysLink.getLast());
+                keysLink.removeLast();
+            }
+            keysLink.addFirst(key);
+            container.put(key, value);
+        }
+    }
 }
