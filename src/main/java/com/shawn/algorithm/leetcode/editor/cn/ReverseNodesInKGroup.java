@@ -109,10 +109,10 @@ public class ReverseNodesInKGroup {
 
         public void reverseList(ListNode head, ListNode tail) {
             ListNode next = tail.next, preNode = head, end = tail.next;
-            while (preNode != next) {
+            while (preNode != end) {
                 ListNode temp = preNode.next;
-                preNode.next = end;
-                end = preNode;
+                preNode.next = next;
+                next = preNode;
                 preNode = temp;
             }
         }
