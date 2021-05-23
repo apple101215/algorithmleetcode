@@ -81,6 +81,7 @@ public class ThreeSum {
                         }
                         if (nums[second] + nums[third] == target) {
                             result.add(Arrays.asList(nums[first], nums[second], nums[third]));
+                            third --;
                         }
                     }
                 }
