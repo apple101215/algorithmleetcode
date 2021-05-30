@@ -48,7 +48,7 @@ import java.util.Stack;
  * @author shawn
  * @date 2021-05-29 10:39:54
  */
-public class MinStackSolution{
+public class MinStackSolution {
     public static void main(String[] args) {
     }
     
