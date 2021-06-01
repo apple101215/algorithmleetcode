@@ -101,12 +101,14 @@ public class RemoveDuplicatesFromSortedArray {
          * @return
          */
         public int removeDuplicates(int[] nums) {
-            int count = 0, n = nums.length;
+            int count = 1, n = nums.length;
             for (int i = 1; i < n; i++) {
-                if (nums[i] == nums[i - 1]) count++;
-                else nums[i - count] = nums[i];
+                if (nums[i] != nums[count - 1]) {
+                    nums[count] = nums[i];
+                    count++;
+                }
             }
-            return n - count;
+            return count;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
