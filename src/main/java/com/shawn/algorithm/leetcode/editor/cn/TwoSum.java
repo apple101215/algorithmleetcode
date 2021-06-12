@@ -44,7 +44,6 @@ package com.shawn.algorithm.leetcode.editor.cn;
 // Related Topics 数组 哈希表 
 // 👍 11158 👎 0
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +60,27 @@ public class TwoSum {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        /**
+         * 第二次写nums之和
+         * @param nums
+         * @param target
+         * @return
+         */
         public int[] twoSum(int[] nums, int target) {
+            Map<Integer, Integer> numsMap = new HashMap<>(nums.length);
+            for (int i = 0; i < nums.length; i++) {
+                int num = nums[i];
+                if (numsMap.containsKey(target - num)) {
+                    return new int[]{numsMap.get(target - num), i};
+                } else {
+                    numsMap.put(num, i);
+                }
+            }
+            return null;
+        }
+
+        public int[] twoSumOld(int[] nums, int target) {
             if (nums.length > 1) {
                 Map<Integer, Integer> existVals = new HashMap<>(nums.length);
                 for (int i = 0; i < nums.length; i++) {
