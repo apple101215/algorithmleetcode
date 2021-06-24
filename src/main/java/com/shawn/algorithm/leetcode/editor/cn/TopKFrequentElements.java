@@ -32,10 +32,8 @@ package com.shawn.algorithm.leetcode.editor.cn;
 // Related Topics 堆 哈希表 
 // 👍 778 👎 0
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 前 K 个高频元素
@@ -50,17 +48,18 @@ public class TopKFrequentElements{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        int[] result = new int[k];
         HashMap<Integer, Integer> freq = new HashMap<>();
         for (int num: nums) {
             freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
-        PriorityQueue<Map.Entry<Integer, Integer>> values = new PriorityQueue<>((o1, o2) -> o2.getValue() - o1.getValue());
-        values.addAll(freq.entrySet());
-        for (int i = 0; i < k; i++) {
-            result[i] = values.poll().getKey();
+        PriorityQueue<Map.Entry<Integer, Integer>> values = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+        for (Map.Entry<Integer, Integer> entry: freq.entrySet()) {
+            values.offer(entry);
+            if (values.size() > k) {
+                values.poll();
+            }
         }
-        return result;
+        return values.stream().map(Map.Entry::getKey).mapToInt(Integer ::intValue).toArray();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
