@@ -52,7 +52,30 @@ public class PowxN {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 递归
+         *
+         * @param x
+         * @param n
+         * @return
+         */
         public double myPow(double x, int n) {
+            if (n == 0)
+                return 1;
+            if (n < 0) {
+                return 1 / x * myPow(1 / x, -(n + 1));
+            }
+            return (n % 2 == 0) ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2);
+        }
+
+        /**
+         * 迭代
+         *
+         * @param x
+         * @param n
+         * @return
+         */
+        public double myPowIterator(double x, int n) {
             if (x == 0) {
                 return 0;
             }
